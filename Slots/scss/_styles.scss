@@ -1,0 +1,582 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-width: 100% auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url(../assets/bg.jpg);
+}
+
+canvas {
+    display: block;
+    cursor: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#vungle-close{
+    opacity: 0;
+    pointer-events: none;
+}
+#vungle-close.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#bottom-container {
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+}
+
+#bottom-container #client-footer {
+    position: absolute;
+    text-align: center;
+    margin: auto;
+    z-index: 900;
+}
+
+#bottom-container #client-footer img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+#bottom-container.full {
+    opacity: 0;
+}
+.preload-font {
+ position: absolute;
+ bottom: -1000%; 
+}
+
+/*
+ * IEC elements (not being used in the canvas) ------------------------------------------------------------
+ */
+
+.item {
+    position: absolute;
+    margin: auto;
+}
+
+.item img {
+    width: 100%;
+}
+
+#frame {
+    z-index: 100;
+    width: 100vw;
+    top: 10vw;
+}
+
+/*
+ * PIEC elements sizing and positioning -------------------------------------------------------------------
+ */
+
+.layout-item {
+    position: absolute;
+    margin: auto;
+    z-index: 20;
+    pointer-events: none;
+}
+
+#game {
+    position: absolute;
+    margin: auto;
+    left:0;
+    top:0;
+    z-index: 10;
+}
+
+#spin-button img{
+    width: 100%;
+}
+
+
+/* Debug mode settings for PIEC containers ---------------------------------------------------*/
+
+
+/* Overwrite and adjust some of the css settings from the layouts here -----------------------*/
+.layout-1, .layout-2 {
+    #logo {
+        // right: auto;
+        top: 0vh;
+        width: 0vw;
+    }
+    #logo-final {
+        width: 80vw;
+        height: 18vw;
+        top: 15vh;
+        left: 0;
+        right: 0;
+        z-index: 100;
+    }
+    #reel-layout{
+        width: 100%;
+        max-width: 100%;
+        max-height: 78%;
+        height: 10%;
+        top: 32%;
+    }
+
+    #reel-layout-background.hide{
+        opacity: 0;
+        transition: all 1s ease-in-out;
+    }
+
+    #win-counter{
+        width: 63vw;
+        height: 12.5vw;
+        left: 16vw;
+        right: 0;
+    }
+    #win-counter-final{
+        width: 65vw;
+        height: 14.5vw;
+        left: 16vw;
+        right: 0;
+    }
+    #win-counter{
+        top: 76vh;
+    }
+    #win-counter-final{
+        top: 57vh;
+    }
+    #win-counter-background{
+        top: 55vh;
+        width: 100vw;
+        height: auto;
+    }
+    #win-counter-background-final{
+        top: 41vh;
+        width: 82vw;
+        height: 12vw;
+    }
+    #spin-overlay {
+        height: 30%;
+        right: 0;
+        top: 60%;
+        bottom: 0;
+    }
+
+    #spin-button {
+        left: 0;
+        right: 0;
+        top: 0%;
+    }
+    #cta-container {
+        bottom: 10%;
+        width: 70%;
+        right: 0;
+        left: 0;
+    }
+    #cta-container-final {
+        width: 80%;
+    }
+
+
+
+    #reel-layout-background {
+        width: 138%;
+        max-width: 300%;
+        top: 38%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    #redCrew, #blackCrew {
+        width: 60%;
+        height: 60%;
+        top: 5%;
+
+    }
+
+    #redShip, #blackShip {
+        width: 70%;
+        height: 48%;
+        top: 50%;
+
+    }
+
+    #redCrew, #redShip{
+        right: -300px;
+    }
+    #blackCrew, #blackShip{
+        left: -300px;
+    }
+
+    #reel-layout-background-bonus{
+        width: 120%;
+        height: 120%;
+        top: 130%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    #reel-layout-bonus {
+        width: 98%;
+        max-width: 100%;
+        max-height: 78%;
+        height: 10%;
+        left:0;
+        right: 0;
+        top: 14%;   
+    }
+
+    
+}
+
+@media all and (orientation:landscape) {
+    .layout-1, .layout-2 {
+        #logo {
+            top: 8vh;
+            width: 35vw;
+            right: 0vw;
+        }
+        #logo-final {
+            width: 44vw;
+            top: 5vh;
+            left: 0;
+            right: 0;
+        }
+        #reel-layout {
+            width: 47.5vw;
+            height: 28vw;
+            top: 34vh;
+            left: 0vw;
+        }
+        #win-counter{
+            width: 35vw;
+            // top: 55%;
+            top: 89%;
+            left: auto;
+            right: 15vw;
+            height: 6vw;
+        }
+        #win-counter-background {
+            // top: 31%;
+            top: 65%;
+            width: 38vw;
+            height: 20vh;
+            right: 16vw;
+        }
+        #win-counter-final {
+            top: 53%;
+            left: 12%;
+            right: 0;
+            width: 56vw;
+            height: 11.5vh;
+        }
+        #win-counter-background-final {
+            top: 15%;
+            left: 0;
+            right: 0;
+            width: 60vw;
+        }
+        #cta-container {
+            width: 50%;
+            height: 20%;
+            left: 0;
+            right: 0;
+            bottom: 35vh;
+        }
+        #cta-container-final {
+            width: 50%;
+            height: 20%;
+            left: 0;
+            right: 0;
+            bottom: 10%;
+        }
+        #spin-overlay {
+            width: 48%;
+            // top: 37%;
+        }
+        #spin-button {
+            width: 45%;
+            top: 70%;
+            right: -5vw;
+        }
+        #tooltip {
+            top: 0;
+            bottom: 0;
+        }
+    }
+}
+
+/*
+ * --------------------------------------------------------------------------------------------------------
+ */
+
+ #cleopatra-container {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    top: 1%;
+}
+
+#tooltip {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: -70%;
+    height: 100%;
+}
+
+#reel-layout-background {
+    width: 60vh;
+    // transform: translate(-50%, -50%);
+    max-width: 100vw;
+    left: 0;
+    right: 0;
+    top: -5.5vh;
+}
+
+#reel-layout-decoration-r, #reel-layout-decoration-l{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#reel-layout-decoration-l img{
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+@media all and (orientation:landscape) {
+
+    #reel-layout-background {
+        width: 48vw;
+        left: 0;
+        right: auto;
+        top: 41.5%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    #reel-layout-decoration-r {
+        opacity: 1;
+        width: 33vw;
+        left: 37vw;
+        top: -14vh;
+    }
+    #cta-background {
+        width: 100%;
+        height: 40%;
+        left: auto;
+        right: 0;
+    }
+}
+
+@media all and (min-width: 768px) and (orientation: portrait) {
+    .layout-2 {
+        #logo {
+            width: 0vw;
+        }
+        #logo-final {
+            width: 55vw;
+            top: 20vh;
+        }
+        #spin-overlay {
+            width: 73vw;
+            height: 19.5vw;
+            bottom: 7vh;
+        }
+        #spin-button {
+            right: -18vw;
+        }
+        #reel-layout {
+            width: 70vw;
+            height: 52vw;
+        }
+        #reel-layout-background {
+            width: 74vw;
+            top: -5vh;
+        }
+        #cta-container {
+            width: 50%;
+        }
+        #cta-container-final {
+            width: 60%;
+            bottom: 20%;
+        }
+        #win-counter-background {
+            width: 75vw;
+        }
+        #win-counter-background-final {
+            top: 33vh;
+        }
+        #win-counter {
+            width: 45vw;
+            height: 9vw;
+            left: 13vw;
+        }
+        #win-counter-final {
+            top: 55vh;
+        }
+
+        #tooltip {
+            bottom: -15%; 
+        }
+        #coin-effect-area {
+            width: 85%;
+        }
+        #coin-cascade-area {
+            width: 90%;
+        }
+        #coin-stack-area {
+            width: 70%;
+        }
+    }
+    #reel-layout-decoration-r, #reel-layout-decoration-l{
+    
+        opacity: 1;
+        width: 49vw;
+        top: -1vh;
+    }
+    #reel-layout-decoration-r {
+        right: -19vw;
+        
+    }
+    #reel-layout-decoration-l {
+        left: -19vw;
+    }
+
+}
+
+@media all and (min-height: 768px) and (orientation: landscape) {
+    .layout-2{
+        #reel-layout {
+            top: 36vh;
+        }
+        #win-counter-background {
+            width: 50vw;
+            left: 0;
+            right: auto;
+            top: 63%;
+        }
+        #win-counter-background-final {
+            top: 24%;
+            width: 63vw;
+        }
+        #win-counter {
+            top: 87%;
+            left: 12vw;
+            right: auto;
+        }
+        #spin-button{
+            right: 6vw;
+            width: 50%;
+        }
+    }
+    #reel-layout-background {
+        width: 50vw;
+        left: -0.8vw;
+    }
+    #reel-layout-decoration-r {
+        top: 0;
+    }
+}
+
+/*iPhone X portrait*/
+@media (min-device-height: 724px) and (max-device-width: 376px) and (min-aspect-ratio: 354/724) and (orientation: portrait) {
+    .layout-2{
+        #reel-layout-background{
+            top: -2vh;
+        }
+        #win-counter-background{
+            top: 48vh;
+        }
+        #win-counter{
+            top: 64.5vh;
+        }
+        #win-counter-background-final {
+            top: 32vh;
+        }
+        #win-counter-final {
+            top: 45vh;
+        }
+    }
+}
+
+/*iPhone X landscape*/
+@media (min-aspect-ratio: 724/354) and (orientation: landscape) {
+    .layout-2{
+        #logo-final{
+            width:30vw;
+        }
+        #reel-layout {
+            top: 35vh;
+            width: 41vw;
+        }
+        #win-counter-background{
+            top: 57%;
+            right: 15vw;
+        }
+        #win-counter{
+            right: 13vw;
+            top: 87%;
+        }
+        #win-counter-background-final {
+            top: 13%;
+            width: 45vw;
+        }
+        #win-counter-final {
+            top: 47vh;
+            width: 40vw;
+            left: 11%;
+        }
+        #spin-overlay{
+            width: 46%;
+        }
+        #spin-button {
+            top: 62%;
+            right: -3vw;
+        }
+        #cta-container {
+            bottom: 28vh;
+        }
+        #tooltip{
+            height: 80%;
+        }
+    }
+    #reel-layout-background{
+        top: 38vh;
+        width: 41vw;
+    }
+    #reel-layout-decoration-r {
+        left: 30vw;
+        top: -23vh;
+    }
+}
